@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 import maruyama.components.annotations.Tabela;
+import maruyama.components.utils.ReflectionsUtils;
 
 /**
  * Essa é uma implementação de um {@code TableModel} que manipula objetos.
@@ -32,6 +33,12 @@ public class ObjectTableModel extends AbstractTableModel {
         this.clazz = clazz;
         this.lista = lista;
         this.atributos = atributos;
+    }
+    
+     public ObjectTableModel(Class clazz, List lista) {
+        this.clazz = clazz;
+        this.lista = lista;
+        this.atributos = ReflectionsUtils.getAtributesFromFields(clazz.getDeclaredFields());
     }
 
     @Override
