@@ -38,6 +38,7 @@ public class ObjectTableModel extends AbstractTableModel {
      public ObjectTableModel(Class clazz, List lista) {
         this.clazz = clazz;
         this.lista = lista;
+        
         this.atributos = ReflectionsUtils.getAtributesFromFields(clazz.getDeclaredFields());
     }
 
