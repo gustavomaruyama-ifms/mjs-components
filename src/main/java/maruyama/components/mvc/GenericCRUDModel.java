@@ -25,7 +25,6 @@ public abstract class GenericCRUDModel<T> {
         this.clazz = (Class<T>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
         this.lista = new ArrayList<T>();
-        preencherLista(carregarLista());
     }   
     
     protected void preencherLista(List<T> objs){
