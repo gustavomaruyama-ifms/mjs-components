@@ -17,6 +17,7 @@ public abstract class GenericCRUDView extends javax.swing.JPanel {
         initComponents();
         this.formulario = formulario;
         this.painelFormulario.add(formulario);
+        this.comboBoxAtributoDeBusca.removeAllItems();
         for (String string : configurarCamposDeBusca()) {
             this.comboBoxAtributoDeBusca.addItem(string);
         }
