@@ -17,7 +17,12 @@ public abstract class GenericCRUDView extends javax.swing.JPanel {
         initComponents();
         this.formulario = formulario;
         this.painelFormulario.add(formulario);
+        for (String string : configurarCamposDeBusca()) {
+            this.comboBoxAtributoDeBusca.addItem(string);
+        }
     }
+
+    public abstract String[] configurarCamposDeBusca();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +51,7 @@ public abstract class GenericCRUDView extends javax.swing.JPanel {
         painelFormulario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         painelFormulario.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Search.png"))); // NOI18N
         jLabel1.setText("Busca:");
 
         comboBoxAtributoDeBusca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -63,12 +69,16 @@ public abstract class GenericCRUDView extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tabela);
 
+        botaoSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Save.png"))); // NOI18N
         botaoSalvar.setText("Salvar");
 
+        botaoEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Edit.png"))); // NOI18N
         botaoEditar.setText("Editar");
 
+        botaoExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Trash.png"))); // NOI18N
         botaoExcluir.setText("Excluir");
 
+        botaoCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cancel.png"))); // NOI18N
         botaoCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout painelInferiorLayout = new javax.swing.GroupLayout(painelInferior);
@@ -94,6 +104,7 @@ public abstract class GenericCRUDView extends javax.swing.JPanel {
                 .addComponent(botaoCancelar))
         );
 
+        botaoNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Add.png"))); // NOI18N
         botaoNovo.setText("Novo");
 
         javax.swing.GroupLayout painelSuperiorLayout = new javax.swing.GroupLayout(painelSuperior);
@@ -101,7 +112,7 @@ public abstract class GenericCRUDView extends javax.swing.JPanel {
         painelSuperiorLayout.setHorizontalGroup(
             painelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelSuperiorLayout.createSequentialGroup()
-                .addComponent(botaoNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         painelSuperiorLayout.setVerticalGroup(

@@ -6,6 +6,8 @@
 package maruyama.components.mvc;
 
 import java.awt.Component;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.lang.reflect.Field;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -69,8 +71,9 @@ public abstract class GenericCRUDController<T> {
         view.getBotaoSalvar().addActionListener((e) -> {
             T object = (T) model.getObject();
             dadosViewParaModel(object, view.getFormulario());
-            model.salvarEmLista();
+            //model.salvarEmLista();
             model.salvarEmBaseDeDados(object);
+            model.preencherLista(model.carregarLista());
             tableModel.fireTableDataChanged();
             this.estado = GenericCRUDController.OBJETO_SELECIONADO;
             aplicarEstado();
@@ -83,7 +86,7 @@ public abstract class GenericCRUDController<T> {
             limparCampos();
             T object = (T) model.getObject();
             model.removerEmBaseDeDados(object);
-            model.remover();
+            model.preencherLista(model.carregarLista());
             tableModel.fireTableDataChanged();
             this.estado = GenericCRUDController.INICIAL;
             aplicarEstado();
@@ -109,6 +112,27 @@ public abstract class GenericCRUDController<T> {
             dadosModelParaView(obj, view.getFormulario());
             this.estado = GenericCRUDController.OBJETO_SELECIONADO;
             aplicarEstado();
+        });
+        
+        view.getCampoBusca().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    String campo = (String) view.getComboBoxAtributoDeBusca().getSelectedItem();
+                    String param = view.getCampoBusca().getText();
+                    model.preencherLista(model.buscar(campo,param));
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                
+            }
         });
     }
 

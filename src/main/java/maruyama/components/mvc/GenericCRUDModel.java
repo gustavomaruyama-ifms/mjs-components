@@ -25,6 +25,18 @@ public abstract class GenericCRUDModel<T> {
         this.clazz = (Class<T>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
         this.lista = new ArrayList<T>();
+        preencherLista(carregarLista());
+    }   
+    
+    protected void preencherLista(List<T> objs){
+        if(objs == null){
+            return;
+        }
+        if(objs.size() < 1){
+            return;
+        }
+        this.lista.clear();
+        this.lista.addAll(objs);
     }
 
     public void novo() {
@@ -54,6 +66,8 @@ public abstract class GenericCRUDModel<T> {
     public abstract void removerEmBaseDeDados(T object);
 
     public abstract List<T> carregarLista();
+    
+    public abstract List<T> buscar(String campo, String param);
 
     public void remover() {
         if (object == null) {
