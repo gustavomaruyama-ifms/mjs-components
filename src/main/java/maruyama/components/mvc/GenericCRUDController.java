@@ -148,7 +148,7 @@ public abstract class GenericCRUDController<T> {
             }
             if (c instanceof JComboBox) {
                 JComboBox cb = (JComboBox) c;
-                cb.setSelectedIndex(0);
+                cb.setSelectedItem(null);
             }
             if (c instanceof JToggleButton) {
                 JToggleButton tb = (JToggleButton) c;
